@@ -136,7 +136,7 @@ const UserSuggestion = () => {
                       <div className="font-semibold">
                         {user.sender.userName}
                       </div>
-                      <div className="mt-1 flex items-center gap-2">
+                      <div className="mt-2 flex items-center gap-2">
                         <button
                           className="px-2 py-1 rounded-lg bg-green-400 hover:bg-green-600 text-white text-sm font-semibold"
                           onClick={() => acceptFn(user._id)}
@@ -169,7 +169,7 @@ const UserSuggestion = () => {
         )
         .map((user: ProfileProps) => (
           <div
-            className="bg-white h-20 rounded-lg mt-2 flex  gap-4 px-4 flex- justify-center items-center hover:bg-gray-100"
+            className="bg-white  h-20 rounded-lg mt-2 flex  gap-3 px-4  justify-center items-center hover:bg-gray-100"
             key={user?._id}
           >
             <img
@@ -178,11 +178,11 @@ const UserSuggestion = () => {
               className="w-12 h-12 rounded-full"
             />
             <div className="flex flex-col">
-              <span className="font-semibold  inline-block w-2">
+              <span className="font-semibold  inline-block w-19 overflow-hidden ">
                 {" "}
                 {user?.userName}
               </span>
-              <span className="text-[12px] text-gray-400">
+              <span className="text-[12px] text-gray-400 h-4 overflow-hidden">
                 {user?.headline}
               </span>
             </div>

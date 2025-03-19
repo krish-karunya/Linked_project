@@ -16,11 +16,13 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
-    education: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Education",
-      default: [],
-    },
+    education: [
+      {
+        fieldOfStudy: String,
+        startYear: String,
+        endYear: String,
+      },
+    ],
     password: {
       type: String,
       Required: [true, "Input Value is Required"],
@@ -51,11 +53,15 @@ const userSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
-    experience: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Experience",
-      default: [],
-    },
+    experience: [
+      {
+        companyName: String,
+        role: String,
+        startDate: String,
+        endDate: String,
+        description: String,
+      },
+    ],
     connections: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",

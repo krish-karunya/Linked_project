@@ -208,9 +208,18 @@ const Notification = () => {
 
   return (
     <div className="p-8 w-8/12 mx-auto text-gray-600">
-      <h1 className="text-2xl text-gray-700 font-semibold">
-        Notification Details :
-      </h1>
+      {notificationList.length !== 0 && (
+        <h1 className="text-2xl text-gray-700 font-semibold">
+          Notification Details :
+        </h1>
+      )}
+
+      {notificationList.length === 0 && (
+        <div className="text-5xl font-bold text-gray-600 text-center mt-20">
+          {" "}
+          No notifications yet. Check back later!{" "}
+        </div>
+      )}
       {notificationList?.map((d: NotificationData) => (
         <div className="w-full border-2 border-sky-500  rounded-lg flex items-center py-4 mt-2">
           <img

@@ -28,7 +28,7 @@ const Comment = ({ commentData, postId }: CommentDataProps) => {
   const { data } = useQuery<UserProfileProps>({
     queryKey: ["userProfile"],
   });
-  const user = data?.data.data;
+  const user = data?.data?.data;
 
   // function handle the deletePost
   const handleDeleteComment = (postId: string, commentId: string) => {
@@ -48,8 +48,9 @@ const Comment = ({ commentData, postId }: CommentDataProps) => {
       // console.log("Comment Deleted Successfully");
     },
   });
+
   return (
-    <div className="bg-gray-200 p-2">
+    <div className="bg-gray-200 p-2 ">
       <div className="bg-gray-300 rounded-lg py-2">
         <div className="flex items-center rounded-lg justify-between relative">
           <div className="flex items-center p-2 ">
@@ -60,7 +61,9 @@ const Comment = ({ commentData, postId }: CommentDataProps) => {
             />
             <div className="flex flex-col ml-4">
               <p className="font-bold text-left">{userName}</p>
-              <p className="text-sm text-gray-400 ">{headline}</p>
+              <p className="text-sm text-gray-400 text-nowrap h-4 w-20 overflow-hidden">
+                {headline}
+              </p>
             </div>
           </div>
           <button

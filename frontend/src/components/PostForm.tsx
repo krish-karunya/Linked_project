@@ -5,7 +5,6 @@ import axiosInstance from "../utils/axiosInstance";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
 import { UserProfile } from "./FeedPost";
-import { string } from "zod";
 
 type PostData = {
   content: string;

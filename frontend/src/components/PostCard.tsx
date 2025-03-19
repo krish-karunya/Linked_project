@@ -8,6 +8,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../utils/axiosInstance";
 import { useAuthContext } from "../context/AuthUser";
 import { Default_user_img } from "../utils/constant";
+import { UserProfileProps } from "./FeedPost";
+import toast from "react-hot-toast";
 
 export interface PostCardProps {
   _id: string;
@@ -139,6 +141,12 @@ const PostCard: React.FC<{ postList: PostCardProps }> = (props) => {
     },
   });
 
+  // Fetch the profile data:
+  const { data: profileData } = useQuery<UserProfileProps>({
+    queryKey: ["userProfile"],
+  });
+  const user = profileData?.data?.data;
+
   return (
     <div>
       <div className="bg-gray-200 mt-2 p-2 rounded-lg">
@@ -149,7 +157,9 @@ const PostCard: React.FC<{ postList: PostCardProps }> = (props) => {
           />
           <div className="flex flex-col ml-4">
             <p className="font-bold text-left">{userName}</p>
-            <p className="text-sm text-gray-400 ">{headline}</p>
+            <p className="text-sm text-gray-400 w-40 h-4 overflow-hidden ">
+              {headline}
+            </p>
           </div>
           <button className="ml-auto" onClick={() => deletePost(postId)}>
             {authUser?.data._id === author._id && (
@@ -196,9 +206,7 @@ const PostCard: React.FC<{ postList: PostCardProps }> = (props) => {
             className="my-2 flex items-center gap-4"
           >
             <img
-              src={
-                "https://media.licdn.com/dms/image/v2/D5635AQEGlzZ1f-NrqA/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1723448950677?e=1741334400&v=beta&t=3Uy6hLZeerKqEpXS-55Rnt-wkiQQGdFQk6nS1R4sFNI"
-              }
+              src={user?.profilePic}
               alt=""
               className="rounded-full w-12 h-12"
             />

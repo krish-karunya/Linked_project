@@ -11,7 +11,7 @@ export const getMyProfile = async (req, res) => {
     const userProfile = await User.findOne({ _id: user._id }).select(
       "-password"
     );
-    console.log(userProfile);
+    // console.log(userProfile);
 
     res.status(200).json({ data: userProfile });
   } catch (error) {
@@ -51,14 +51,12 @@ export const getMySuggestions = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   const currentUser = req.user;
-  console.log("currentUser", currentUser);
+  // console.log("currentUser", currentUser);
 
   try {
     const {
-      name,
-      username,
+      userName,
       education,
-      password,
       profilePic,
       bannerImg,
       headline,
@@ -66,13 +64,15 @@ export const updateProfile = async (req, res) => {
       about,
       skill,
       experience,
-    } = req.body;
+    } = req.body.data;
 
-    if (!validateField(req)) {
-      return res
-        .status(400)
-        .json({ message: "Field is not allow you to edit " });
-    }
+    console.log("req.body", req.body);
+
+    // if (!validateField(req)) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: "Field is not allow you to edit " });
+    // }
     // if (!validator.isBase64(profilePic) && !validator.isBase64(bannerImg)) {
     //   return res.status(400).json({ message: "Invalid Image URL format" });
     // }
@@ -80,8 +80,8 @@ export const updateProfile = async (req, res) => {
     const updatedProfile = {};
 
     for (const field of AllowedEditField) {
-      if (req.body[field]) {
-        updatedProfile[field] = req.body[field];
+      if (req.body.data[field]) {
+        updatedProfile[field] = req.body.data[field];
       }
     }
 
@@ -95,12 +95,15 @@ export const updateProfile = async (req, res) => {
         await cloudinary.uploader.upload(bannerImg, { folder: "profile" })
       ).secure_url;
     }
+    console.log("Updated profile Object", updateProfile);
 
     const user = await User.findByIdAndUpdate(
-      { _id: req.user._id },
-      updatedProfile,
+      req.user._id, // No need to wrap _id in an object
+      { $set: updatedProfile }, // Use $set to ensure updates
       { new: true }
     ).select("-password");
+
+    console.log("updatedProfile--", user);
 
     res.status(200).json({ data: user });
   } catch (error) {

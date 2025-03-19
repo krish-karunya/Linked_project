@@ -16,13 +16,19 @@ const UserCard = () => {
   const user = data?.data.data;
 
   return (
-    <div className="col-span-3 ">
+    <div className="col-span-3">
       <div className=" p-1  rounded-lg bg-gray-200 relative">
-        <div className="bg-gray-700 h-14 rounded-lg"></div>
+        <div className="bg-gray-700 h-14 rounded-lg">
+          <img
+            src={user?.bannerImg}
+            alt="banner-image"
+            className="rounded-lg"
+          />
+        </div>
         <img
           src={user?.profilePic}
           alt="profilePic"
-          className="rounded-full w-14 h-14 absolute top-8 left-5 object-cover"
+          className="rounded-full w-14 h-14 absolute top-8 left-5 object-cover mt-3"
         />
 
         <h1 className="mt-10 text-2xl font-semibold pl-4 mb-4">

@@ -12,12 +12,12 @@ export const AllowedEditField = [
 ];
 
 export const validateField = (req) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   const isValidField = Object.keys(req.body).every((field) =>
     AllowedEditField.includes(field)
   );
-  console.log(isValidField);
+  // console.log(isValidField);
 
   return isValidField;
 };

@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../utils/axiosInstance";
-import { Pencil, Camera } from "lucide-react";
+import { Pencil, Camera, X } from "lucide-react";
 import ProfileForm from "../components/ProfileForm";
 import { useState } from "react";
 
 const ProfilePage = () => {
-  const [edit, setEdit] = useState<boolean>(true);
+  const [edit, setEdit] = useState<boolean>(false);
   const { data, isLoading } = useQuery({
     queryKey: ["userProfile"],
     queryFn: () => axiosInstance.get("/user"),
   });
-  console.log(data?.data.data);
+  // console.log(data?.data.data);
   const user = data?.data.data;
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -31,9 +31,6 @@ const ProfilePage = () => {
             alt="banner-imgfile"
             className="h-50 mx-auto rounded-t-lg"
           />
-          <div className=" rounded-full p-2">
-            <Camera className="absolute right-6 size-10 bg-white rounded-full p-2 top-36" />
-          </div>
         </div>
         <div>
           <img
@@ -41,9 +38,6 @@ const ProfilePage = () => {
             alt="profile"
             className="w-36 h-36 object-cover rounded-full absolute top-28 left-10 border-4 border-gray-400 "
           />
-          <div className=" rounded-full p-2">
-            <Camera className="absolute left-36 size-10 bg-white rounded-full p-2" />
-          </div>
         </div>
 
         <div className=" pl-8 bg-white  pb-4">
@@ -51,11 +45,11 @@ const ProfilePage = () => {
           <p className="text-sky-500 font-semibold">5 connections</p>
           <p className="mt-2">
             {" "}
-            <span className="font-semibold ">About :</span>
-            {user.about}
+            <span className="font-semibold mr-2">Headline :</span>
+            {user.headline}
           </p>
           <p>
-            <span className="font-semibold">Location :</span>
+            <span className="font-semibold mr-2">Location :</span>
             {user.location}
           </p>
         </div>
@@ -101,17 +95,60 @@ const ProfilePage = () => {
               <Pencil onClick={() => setEdit(true)} />
             </span>
           </div>
-          <div className="mt-4 w-[90%] ml-4">{user.about}</div>
+          <div className="mt-4 w-[90%] ml-4">
+            {user.experience.map((d) => (
+              <>
+                <div className="bg-gray-200 p-6 rounded-lg mt-4">
+                  <p>
+                    <span className="font-bold">title : </span>
+                    {d.role}
+                  </p>
+                  <p>
+                    <span className="font-bold">company :</span> {d.companyName}
+                  </p>
+                  <p>
+                    <span className="font-bold">startDate :</span> {d.startDate}
+                  </p>
+                  <p>
+                    <span className="font-bold">endDate :</span> {d.endDate}
+                  </p>
+                  <p className="w-[80%] text-justify">
+                    <span className="font-bold">Description :</span>
+                    {d.description}
+                  </p>
+                </div>
+              </>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-4 bg-white p-4 rounded-lg">
+        <div className="mt-4 bg-white p-6 rounded-lg">
           <div className="flex items-center justify-between">
             <h1 className="font-semibold text-xl">Education</h1>
             <span>
               <Pencil onClick={() => setEdit(true)} />
             </span>
           </div>
-          <div className="mt-4 w-[90%] ml-4">{user.about}</div>
+          <div className="mt-4 w-[90%] ml-4">
+            {" "}
+            {user.education.map((d) => (
+              <>
+                <div className="bg-gray-200 p-3 rounded-lg">
+                  <p>
+                    <span className="font-bold">StartDate : </span>
+                    {d.startYear}
+                  </p>
+                  <p>
+                    <span className="font-bold">endDate :</span> {d.endYear}
+                  </p>
+                  <p className="w-[80%] text-justify">
+                    <span className="font-bold">fieldOfStudy :</span>
+                    {d.fieldOfStudy}
+                  </p>
+                </div>
+              </>
+            ))}
+          </div>
         </div>
 
         <div className="mt-4 bg-white p-4 rounded-lg">
@@ -122,27 +159,9 @@ const ProfilePage = () => {
             </span>
           </div>
           <div className="mt-4 w-[90%] ml-4">
-            {[
-              "React",
-              "React-router-dom",
-              "Typescript",
-              "Tanstack-Query",
-              "React-Hook-Form",
-              "Zod Library",
-              "Zustand",
-              "Redux",
-              "context-API",
-              "expressJs",
-              "Nodejs",
-              "MongoDB",
-              "Eraser.io",
-              "Draw.io",
-            ].map((d) => (
-              <button className="bg-gray-200 p-4 rounded-full m-1">
-                {d}{" "}
-                <span className="ml-3 text-[12px] rounded-full bg-white py-2 px-3 font-semibold">
-                  X
-                </span>
+            {user.skill.map((d: string, index: number) => (
+              <button className="bg-gray-200 p-4 rounded-full m-1" key={index}>
+                {d}
               </button>
             ))}
           </div>

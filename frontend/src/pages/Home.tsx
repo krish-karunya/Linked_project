@@ -1,12 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "../utils/axiosInstance";
+// import { useQuery } from "@tanstack/react-query";
+// import axios from "../utils/axiosInstance";
 import UserCard from "../components/UserCard";
 import FeedPost from "../components/FeedPost";
 import UserSuggestion from "../components/UserSuggestion";
 import { useAuthContext } from "../context/AuthUser";
+import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
   const { authUser } = useAuthContext();
+  useQuery({
+    queryKey: ["notification"],
+  });
 
   return (
     <div>
