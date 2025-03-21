@@ -16,7 +16,7 @@ const UserCard = () => {
   const user = data?.data.data;
 
   return (
-    <div className="col-span-3">
+    <div className="col-span-3 fixed w-[290px]">
       <div className=" p-1  rounded-lg bg-gray-200 relative">
         <div className="bg-gray-700 h-14 rounded-lg">
           <img

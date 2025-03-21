@@ -55,7 +55,7 @@ const Signup = () => {
   // console.log(errors);
 
   return (
-    <div>
+    <div className="py-20">
       <div className="flex justify-center items-center p-4 gap-12">
         <div className="w-full md:w-1/2  rounded-lg ml-16 ">
           <h1 className="text-center text-3xl mr-20 mb-2 text-blue-700 font-semibold">

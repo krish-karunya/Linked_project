@@ -138,12 +138,16 @@ export const acceptConnection = async (req, res) => {
     // Notification :
 
     const newNotification = new Notification({
-      senderId: connection.sender,
-      receiverId: user._id,
+      senderId: connection.receiver,
+      receiverId: connection.sender,
       notificationType: "Accepted",
     });
 
-    await newNotification.save();
+    try {
+      await newNotification.save();
+    } catch (error) {
+      console.log(error);
+    }
 
     res.json({ message: "Connection accepted successfully" });
   } catch (error) {

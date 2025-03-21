@@ -28,12 +28,12 @@ const MyNetwork = () => {
     );
   }
   return (
-    <div className="grid grid-cols-12 p-8 gap-6">
-      <div className="col-span-4">
+    <div className="flex p-8 gap-6 rounded-lg">
+      <div className="col-span-4 mt-14 w-[25%]">
         <UserCard />
       </div>
 
-      <div className="bg-gray-200 col-span-8 p-8">
+      <div className="bg-gray-200 flex-1 col-span-8 p-8 mt-14 rounded-lg">
         <h1 className="text-xl font-bold text-gray-700 mb-4">
           My Connections({myConnectionList.length})
         </h1>

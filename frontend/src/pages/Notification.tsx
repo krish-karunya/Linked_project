@@ -14,7 +14,7 @@ import axiosInstance from "../utils/axiosInstance";
 import { formatRelativeTime } from "../utils/dateTimeFormatFunction";
 import { Link } from "react-router-dom";
 
-type NotificationType = "like" | "comment" | "connection";
+type NotificationType = "like" | "comment" | "connection" | "Accepted";
 
 export type NotificationData = {
   _id: string;
@@ -76,6 +76,12 @@ const Notification = () => {
           </p>
         );
       case "connection":
+        return (
+          <p>
+            <UserPlus className="text-sky-500 size-10" />
+          </p>
+        );
+      case "Accepted":
         return (
           <p>
             <UserPlus className="text-sky-500 size-10" />
@@ -179,6 +185,23 @@ const Notification = () => {
             </div>
           </div>
         );
+      case "Accepted":
+        return (
+          <div>
+            <div className="flex flex-col gap-2">
+              <p>
+                <span className="font-bold">
+                  {notification.senderId.userName}
+                </span>{" "}
+                Accepted the connection Request
+              </p>
+              <span className="text-gray-500">
+                {" "}
+                {formatRelativeTime(notification.createdAt)}
+              </span>
+            </div>
+          </div>
+        );
       default:
         null;
     }
@@ -208,50 +231,97 @@ const Notification = () => {
 
   return (
     <div className="p-8 w-8/12 mx-auto text-gray-600">
-      {notificationList.length !== 0 && (
-        <h1 className="text-2xl text-gray-700 font-semibold">
-          Notification Details :
-        </h1>
-      )}
+      <div className="mt-16">
+        {notificationList.length !== 0 && (
+          <h1 className="text-2xl text-gray-700 font-semibold">
+            Notification Details :
+          </h1>
+        )}
 
-      {notificationList.length === 0 && (
-        <div className="text-5xl font-bold text-gray-600 text-center mt-20">
-          {" "}
-          No notifications yet. Check back later!{" "}
-        </div>
-      )}
-      {notificationList?.map((d: NotificationData) => (
-        <div className="w-full border-2 border-sky-500  rounded-lg flex items-center py-4 mt-2">
-          <img
-            src={Default_user_img}
-            alt=""
-            className="w-20 h-20 rounded-full"
-          />
-          <div className="flex gap-2 ml-4 justify-between w-full pr-8">
-            <div className="flex gap-2">
-              {" "}
-              <div> {renderNotificationIcon(d.notificationType)}</div>
-              <div className="flex items-center mt-2">
-                {renderNotificationContent(d)}
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              {d.read === true ? (
-                <Check className="text-green-600 font-bold" />
-              ) : (
-                <EyeIcon
-                  className="hover:text-sky-600"
-                  onClick={() => HandleRead(d._id)}
-                />
-              )}
-              <Trash
-                className="hover:text-red-500"
-                onClick={() => HandleDelete(d._id)}
-              />
-            </div>
+        {notificationList.length === 0 && (
+          <div className="text-5xl font-bold text-gray-600 text-center mt-20">
+            {" "}
+            No notifications yet. Check back later!{" "}
           </div>
-        </div>
-      ))}
+        )}
+
+        {notificationList?.map((d: NotificationData) => (
+          <div>
+            {!d.read && (
+              <div className="w-full border-2 border-sky-500  rounded-lg flex items-center py-4 mt-2">
+                <img
+                  src={Default_user_img}
+                  alt=""
+                  className="w-20 h-20 rounded-full"
+                />
+                <div className="flex gap-2 ml-4 justify-between w-full pr-8">
+                  <div className="flex gap-2">
+                    {" "}
+                    <div> {renderNotificationIcon(d.notificationType)}</div>
+                    <div className="flex items-center mt-2">
+                      {renderNotificationContent(d)}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    {d.read ? (
+                      <Check className="text-green-600 font-bold" />
+                    ) : (
+                      <EyeIcon
+                        className="hover:text-sky-600"
+                        onClick={() => HandleRead(d._id)}
+                      />
+                    )}
+                    <Trash
+                      className="hover:text-red-500"
+                      onClick={() => HandleDelete(d._id)}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-4">
+        <h1 className="text-2xl text-gray-800 font-semibold">History :</h1>
+        {notificationList?.map((d: NotificationData) => (
+          <div>
+            {d.read && (
+              <div className="w-full border-2 border-sky-500  rounded-lg flex items-center py-4 mt-2">
+                <img
+                  src={Default_user_img}
+                  alt=""
+                  className="w-20 h-20 rounded-full"
+                />
+                <div className="flex gap-2 ml-4 justify-between w-full pr-8">
+                  <div className="flex gap-2">
+                    {" "}
+                    <div> {renderNotificationIcon(d.notificationType)}</div>
+                    <div className="flex items-center mt-2">
+                      {renderNotificationContent(d)}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    {d.read === true ? (
+                      <Check className="text-green-600 font-bold" />
+                    ) : (
+                      <EyeIcon
+                        className="hover:text-sky-600"
+                        onClick={() => HandleRead(d._id)}
+                      />
+                    )}
+                    <Trash
+                      className="hover:text-red-500"
+                      onClick={() => HandleDelete(d._id)}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,9 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../utils/axiosInstance";
-import { Pencil, Camera, X } from "lucide-react";
+import { Pencil } from "lucide-react";
 import ProfileForm from "../components/ProfileForm";
 import { useState } from "react";
 
+type ExperienceProps = {
+  role: String;
+  companyName: String;
+  startDate: String;
+  endDate: String;
+  description: String;
+};
+
+type EducationProps = {
+  startYear: String;
+  endYear: String;
+  fieldOfStudy: String;
+};
 const ProfilePage = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const { data, isLoading } = useQuery({
@@ -17,15 +30,15 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="w-full text-gray-800 bg-gray-200 h-full relative">
+    <div className="w-full text-gray-800 bg-gray-200 h-full relative ">
       {edit && (
         <div
           className="h-full w-full absolute bg-black z-10 opacity-50  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100"
           onClick={() => setEdit(false)}
         ></div>
       )}
-      <div className="relative border-2 border-gray-400 w-[60%] mx-auto rounded-t-lg ">
-        <div>
+      <div className="relative border-2 border-gray-400 w-[60%] mx-auto rounded-t-lg">
+        <div className="mt-20">
           <img
             src={user.bannerImg}
             alt="banner-imgfile"
@@ -36,7 +49,7 @@ const ProfilePage = () => {
           <img
             src={user.profilePic}
             alt="profile"
-            className="w-36 h-36 object-cover rounded-full absolute top-28 left-10 border-4 border-gray-400 "
+            className="w-36 h-36 object-cover rounded-full absolute top-48   left-10 border-4 border-gray-400 "
           />
         </div>
 
@@ -96,7 +109,7 @@ const ProfilePage = () => {
             </span>
           </div>
           <div className="mt-4 w-[90%] ml-4">
-            {user.experience.map((d) => (
+            {user.experience.map((d: ExperienceProps) => (
               <>
                 <div className="bg-gray-200 p-6 rounded-lg mt-4">
                   <p>
@@ -131,7 +144,7 @@ const ProfilePage = () => {
           </div>
           <div className="mt-4 w-[90%] ml-4">
             {" "}
-            {user.education.map((d) => (
+            {user.education.map((d: EducationProps) => (
               <>
                 <div className="bg-gray-200 p-3 rounded-lg">
                   <p>

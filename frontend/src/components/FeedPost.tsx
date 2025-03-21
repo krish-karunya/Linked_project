@@ -24,11 +24,16 @@ export type UserProfileProps = {
     data: UserProfile;
   };
 };
-const Post = () => {
+
+type PostProp = {
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const Post = ({ isMenuOpen, setIsMenuOpen }: PostProp) => {
   const { data } = useQuery<UserProfileProps>({
     queryKey: ["userProfile"],
   });
-  console.log(data);
+  // console.log(data);
 
   const user = data?.data.data;
 
@@ -37,8 +42,12 @@ const Post = () => {
   }
 
   return (
-    <div className="col-span-6  text-center w-full">
-      <PostForm user={user} />
+    <div className="col-span-6  text-center w-full ml-[300px]">
+      <PostForm
+        setIsMenuOpen={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
+        user={user}
+      />
       <PostContainer />
     </div>
   );

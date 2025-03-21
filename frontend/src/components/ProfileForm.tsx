@@ -123,7 +123,7 @@ const ProfileForm: React.FC<{
   const onSubmit = (data: any) => {
     console.log(data);
     mutate(data);
-    // reset();
+    reset();
   };
 
   // Function to add skill in to skill Array:
@@ -267,7 +267,7 @@ const ProfileForm: React.FC<{
             <div className="w-full">
               <div className=" bg-white mx-auto rounded-lg  ">
                 <div className="flex items-center justify-between">
-                  <h1 className="text-xl font-semibold p-4 rounded-lg text-sky-500">
+                  <h1 className="text-xl font-semibold p-4 rounded-lg text-sky-500 ">
                     Add Education Details
                   </h1>
                   <div
@@ -322,14 +322,14 @@ const ProfileForm: React.FC<{
                           onClick={() => remove(index)}
                           className="bg-red-400 text-white  w-1/2 mx-auto rounded-lg px-4 py-2 font-medium text-sm mt-4 text-nowrap"
                         >
-                          Remove Education
+                          Clear
                         </button>
                       )}
                     </div>
                   ))}
                 </div>
                 <button
-                  className="bg-sky-600 text-white w-[30%] ml-18 mx-auto rounded-lg px-4 py-2 font-medium text-sm mt-2"
+                  className="bg-sky-600  text-white w-[30%] ml-18 mx-auto rounded-lg px-4 py-2 font-medium text-sm mt-2"
                   onClick={() =>
                     append({
                       startYear: "",
@@ -347,7 +347,8 @@ const ProfileForm: React.FC<{
             className="text-sky-600 mt-4 flex items-center gap-2"
             onClick={() => setEducationMenu(true)}
           >
-            <Plus /> <span className="font-semibold">Add Education </span>
+            <Plus />{" "}
+            <span className="font-semibold cursor-pointer">Add Education </span>
           </span>
         </div>
         <div className="flex flex-col">
@@ -431,7 +432,7 @@ const ProfileForm: React.FC<{
                         className="bg-red-400 text-white w-1/2 mx-auto rounded-lg px-4 py-2 font-medium text-sm mt-4"
                         onClick={() => removeExperience(index)}
                       >
-                        Remove Experience
+                        Clear
                       </button>
                     )}
                   </div>
@@ -460,7 +461,8 @@ const ProfileForm: React.FC<{
             className="text-sky-600 mt-4 flex items-center gap-2"
             onClick={() => setExperienceMenu(true)}
           >
-            <Plus /> <span className="font-semibold">Add Experience </span>
+            <Plus />
+            <span className="font-semibold cursor-pointer">Add Experience</span>
           </span>
         </div>
         <div className="flex flex-col">
@@ -493,13 +495,13 @@ const ProfileForm: React.FC<{
           {skill?.map((s, index) => (
             <span
               key={index}
-              className="bg-gray-200 text-sm px-4 py-2 rounded flex items-center"
+              className="border border-sky-600 text-sm px-4 py-2 rounded flex items-center"
             >
               {s}
               <button
                 type="button"
                 onClick={() => removeSkill(index)}
-                className="ml-2 text-red-500"
+                className="ml-2 text-gray-800"
               >
                 <X size={16} />
               </button>

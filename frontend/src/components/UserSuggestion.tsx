@@ -108,7 +108,7 @@ const UserSuggestion = () => {
   }
 
   return (
-    <div className="col-span-3 bg-gray-200 p-4 rounded-lg h-[120vh]">
+    <div className="col-span-3 bg-gray-200 p-4 rounded-lg h-[120vh] fixed right-0 top-20 mt-2">
       {pendingConnectionList.find((user: UserProps) => {
         return (
           user.receiver === authUser?.data._id &&
@@ -121,10 +121,10 @@ const UserSuggestion = () => {
             (user: UserProps) =>
               user.sender._id !== authUser?.data._id && (
                 <div
-                  className="mt-2 bg-gray-300 p-4 rounded-lg"
+                  className="mt-2 bg-gray-300 p-4 rounded-lg "
                   key={user.sender._id}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 ">
                     <div>
                       <img
                         src={user.sender.profilePic}
@@ -182,12 +182,12 @@ const UserSuggestion = () => {
                 {" "}
                 {user?.userName}
               </span>
-              <span className="text-[12px] text-gray-400 h-4 overflow-hidden">
+              <span className="text-[12px] text-gray-400 h-4 overflow-hidden w-20">
                 {user?.headline}
               </span>
             </div>
             <button
-              className="text-[12px] border border-sky-700 text-sky-700 p-2 rounded-4xl font-bold flex justify-center items-center gap-1 px-4 hover:text-white hover:bg-sky-500 duration-300 "
+              className={`text-[12px] border-[1.5px] border-sky-700 text-sky-700 p-2 rounded-4xl font-bold flex justify-center items-center gap-1 px-4  hover:bg-gray-300 duration-300`}
               onClick={() => mutate(user._id)}
             >
               {pendingConnectionList?.find(

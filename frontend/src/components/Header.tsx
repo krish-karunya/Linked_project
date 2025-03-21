@@ -43,7 +43,7 @@ const Header = () => {
     }
   };
   return (
-    <div className="p-3 bg-gray-100 flex justify-between items-center shadow-lg ">
+    <div className="p-3 bg-gray-100 flex justify-between items-center shadow-lg fixed w-full z-10 ">
       <div>
         <Link to={"/home"}>
           {" "}

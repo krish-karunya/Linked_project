@@ -45,7 +45,7 @@ const Login = () => {
   };
   console.log(errors);
   return (
-    <div>
+    <div className="py-20">
       {" "}
       <div>
         <form

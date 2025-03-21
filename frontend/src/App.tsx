@@ -16,29 +16,31 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Routes>
-        <Route
-          path="/signup"
-          element={authUser ? <Navigate to={"/home"} /> : <Signup />}
-        />
-        <Route
-          path="/"
-          element={authUser ? <Navigate to={"/home"} /> : <Login />}
-        />
-        <Route path="/home" element={authUser ? <Home /> : <Login />} />
-        <Route
-          path="/mynetwork"
-          element={authUser ? <MyNetwork /> : <Login />}
-        />
-        <Route
-          path="/profile"
-          element={authUser ? <ProfilePage /> : <Login />}
-        />
-        <Route
-          path="/notification"
-          element={authUser ? <Notification /> : <Login />}
-        />
-      </Routes>
+      <div>
+        <Routes>
+          <Route
+            path="/signup"
+            element={authUser ? <Navigate to={"/home"} /> : <Signup />}
+          />
+          <Route
+            path="/"
+            element={authUser ? <Navigate to={"/home"} /> : <Login />}
+          />
+          <Route path="/home" element={authUser ? <Home /> : <Login />} />
+          <Route
+            path="/mynetwork"
+            element={authUser ? <MyNetwork /> : <Login />}
+          />
+          <Route
+            path="/profile"
+            element={authUser ? <ProfilePage /> : <Login />}
+          />
+          <Route
+            path="/notification"
+            element={authUser ? <Notification /> : <Login />}
+          />
+        </Routes>
+      </div>
       <Toaster />
     </div>
   );
