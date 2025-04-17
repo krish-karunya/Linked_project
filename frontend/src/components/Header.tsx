@@ -48,8 +48,8 @@ const Header = () => {
         <Link to={"/home"}>
           {" "}
           <img
-            width="50"
-            height="50"
+            width="40"
+            height="40"
             src="https://img.icons8.com/ios-filled/50/228BE6/linkedin.png"
             alt="linkedin"
           />
@@ -57,7 +57,7 @@ const Header = () => {
       </div>
       {authUser && (
         <div>
-          <ul className="flex justify-center items-center gap-8">
+          <ul className="flex justify-center items-center gap-5 sm:gap-8">
             <li className=" text-[14px] font-semibold">
               <NavLink
                 to={"/home"}
@@ -69,9 +69,9 @@ const Header = () => {
               >
                 {" "}
                 <span>
-                  <House className="size-5" />
+                  <House className="size-6 md:size-5" />
                 </span>{" "}
-                Home
+                <span className="hidden md:block">Home</span>
               </NavLink>
             </li>
             <li className=" text-[14px] font-semibold relative">
@@ -85,16 +85,9 @@ const Header = () => {
               >
                 {" "}
                 <span>
-                  <Users className="size-5" />
+                  <Users className="size-6 md:size-5" />
                 </span>{" "}
-                My Network
-                {/* <span
-                  className="
-                  absolute right-0 top-0 h-5 w-5 bg-blue-400 rounded-full text-white text-[10px] flex justify-center items-center 
-        -translate-x-1/2 -translate-y-1/2 font-semibold"
-                >
-                  7
-                </span> */}
+                <span className="hidden md:block"> My Network</span>
               </NavLink>
             </li>
             <li className=" text-[14px] font-semibold relative">
@@ -108,9 +101,9 @@ const Header = () => {
               >
                 {" "}
                 <span>
-                  <BellRing className="size-5" />
+                  <BellRing className="size-6 md:size-5" />
                 </span>{" "}
-                Notification
+                <span className="hidden md:block"> Notification</span>
                 <span
                   className="
                   absolute right-0 top-0 h-5 w-5 bg-blue-400 rounded-full text-white text-[10px] flex justify-center items-center 
@@ -131,9 +124,9 @@ const Header = () => {
               >
                 {" "}
                 <span>
-                  <UserRoundPen className="size-5" />
-                </span>{" "}
-                My Profile
+                  <UserRoundPen className="size-6 md:size-5" />
+                </span>
+                <span className="hidden md:block"> My Profile</span>
               </NavLink>
             </li>
             <li>
@@ -144,7 +137,7 @@ const Header = () => {
                 <span>
                   <LogOut className="size-5" />
                 </span>
-                Log Out
+                <span className="hidden md:block">Log Out</span>
               </button>
             </li>
           </ul>

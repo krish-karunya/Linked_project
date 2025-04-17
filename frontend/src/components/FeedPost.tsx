@@ -42,7 +42,7 @@ const Post = ({ isMenuOpen, setIsMenuOpen }: PostProp) => {
   }
 
   return (
-    <div className="col-span-6  text-center w-full ml-[300px]">
+    <div className="col-span-12 md:col-span-6  text-center w-full md:ml-[300px]">
       <PostForm
         setIsMenuOpen={setIsMenuOpen}
         isMenuOpen={isMenuOpen}

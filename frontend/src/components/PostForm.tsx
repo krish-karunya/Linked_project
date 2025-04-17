@@ -135,7 +135,7 @@ const PostForm: React.FC<PostFormProps> = ({
               </div>
               <div className="relative">
                 <button
-                  className="bg-sky-500 px-5 py-2 text-white rounded-full font-semibold outline-none appearance-none pr-10 cursor-pointer"
+                  className="bg-sky-500 px-5 py-2 hidden md:block text-white rounded-full font-semibold outline-none appearance-none pr-10 cursor-pointer"
                   onClick={() => setIsMenuOpen(true)}
                   type="button"
                 >
@@ -143,7 +143,10 @@ const PostForm: React.FC<PostFormProps> = ({
                 </button>
                 {/* Custom dropdown arrow */}
                 <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                  <ChevronDown className="text-white mt-1" size={20} />
+                  <ChevronDown
+                    className="text-white mt-1 hidden md:block"
+                    size={20}
+                  />
                 </div>
               </div>
             </div>
@@ -173,7 +176,7 @@ const PostForm: React.FC<PostFormProps> = ({
                 {" "}
                 {image && (
                   <button
-                    className="bg-gray-600 absolute top-14 right-36 w-8 h-8 text-white flex justify-center items-center rounded-full"
+                    className="bg-gray-600 absolute top-14 right-28 md:right-36 w-8 h-8 text-white flex justify-center items-center rounded-full"
                     onClick={() => setImage("")}
                   >
                     <X />
@@ -188,7 +191,7 @@ const PostForm: React.FC<PostFormProps> = ({
                       <img
                         src={imagePreview}
                         alt="preview-image"
-                        className=" rounded-lg  "
+                        className=" rounded-lg"
                       />
                     </div>
                   </div>
@@ -234,10 +237,10 @@ const PostForm: React.FC<PostFormProps> = ({
                 <div className="relative">
                   <div>
                     <form
-                      className="p-4 flex flex-col justify-center items-center"
+                      className="p-4 flex flex-col justify-center items-center "
                       onSubmit={HandleSubmit}
                     >
-                      <div className="flex items-center mt-4">
+                      <div className="flex items-center mt-4 ">
                         <div className="flex  items-center gap-4">
                           <div className="relative">
                             <select
@@ -250,7 +253,7 @@ const PostForm: React.FC<PostFormProps> = ({
                               <option value="private">Private</option>
                             </select>
                             {/* Custom dropdown arrow */}
-                            <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                            <div className="absolute inset-y-0 right-3  flex items-center pointer-events-none">
                               <ChevronDown
                                 className="text-white mt-1"
                                 size={20}
@@ -260,7 +263,7 @@ const PostForm: React.FC<PostFormProps> = ({
                         </div>
                       </div>
                       <div className="flex flex-col items-center w-full gap-4 mt-16">
-                        <div className="flex items-center gap-2 w-full">
+                        <div className="flex items-center  gap-2 w-full">
                           <img
                             src={user?.profilePic}
                             alt="profilePic"
@@ -268,7 +271,7 @@ const PostForm: React.FC<PostFormProps> = ({
                           />
                           <input
                             type="text"
-                            className="w-[500px] border-[1.3px] border-gray-400 outline-none rounded-full py-2 px-6"
+                            className="md:w-[500px] border-[1.3px] border-gray-400 outline-none rounded-full py-2 px-6"
                             placeholder="Create a post"
                             name="content"
                             value={content}

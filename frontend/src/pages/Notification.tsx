@@ -230,7 +230,7 @@ const Notification = () => {
   }
 
   return (
-    <div className="p-8 w-8/12 mx-auto text-gray-600">
+    <div className="p-8 w-full md:w-8/12 mx-auto text-gray-600">
       <div className="mt-16">
         {notificationList.length !== 0 && (
           <h1 className="text-2xl text-gray-700 font-semibold">
@@ -246,7 +246,7 @@ const Notification = () => {
         )}
 
         {notificationList?.map((d: NotificationData) => (
-          <div>
+          <div key={d.__v}>
             {!d.read && (
               <div className="w-full border-2 border-sky-500  rounded-lg flex items-center py-4 mt-2">
                 <img

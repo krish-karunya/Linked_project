@@ -8,6 +8,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Notification from "./pages/Notification";
 import { useAuthContext } from "./context/AuthUser";
 import { Toaster } from "react-hot-toast";
+import Chat from "./components/Chat";
 
 const App = () => {
   const { authUser } = useAuthContext();
@@ -39,6 +40,7 @@ const App = () => {
             path="/notification"
             element={authUser ? <Notification /> : <Login />}
           />
+          <Route path="/chat/:id" element={authUser ? <Chat /> : <Login />} />
         </Routes>
       </div>
       <Toaster />

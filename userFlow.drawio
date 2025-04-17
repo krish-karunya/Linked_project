@@ -430,7 +430,7 @@
                         <mxPoint x="420" y="290" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="206" value="Save" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="206" value="Save" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="120" y="3100" width="550" height="40" as="geometry"/>
                 </mxCell>
             </root>

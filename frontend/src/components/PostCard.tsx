@@ -17,7 +17,9 @@ export interface PostCardProps {
   visibility: string;
   content: string;
   comment: string[];
+  commentCount: number;
   like?: string[];
+  likeCount: number;
   image: string;
   createdAt: Date;
   updatedAt: Date;
@@ -79,7 +81,16 @@ const postDeleteFn = (postId: string) => {
 };
 
 const PostCard: React.FC<{ postList: PostCardProps }> = (props) => {
-  const { author, comment, content, image, like, _id: postId } = props.postList;
+  const {
+    author,
+    comment,
+    commentCount,
+    content,
+    image,
+    like,
+    _id: postId,
+    likeCount,
+  } = props.postList;
   const { userName, profilePic, headline } = author;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [commentValue, setCommentValue] = useState("");
@@ -181,14 +192,14 @@ const PostCard: React.FC<{ postList: PostCardProps }> = (props) => {
             onClick={() => handleLike(postId)}
           >
             <ThumbsUp size={18} className={isLiked ? `text-blue-700` : ""} />
-            like ({like?.length})
+            like ({likeCount})
           </button>
           <button
             className="flex items-center gap-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <MessageCircle size={18} />
-            comment ({comment.length})
+            comment ({commentCount})
           </button>
           <button className="flex items-center gap-1">
             <Share2 size={18} />

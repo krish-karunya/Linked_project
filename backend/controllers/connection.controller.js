@@ -5,7 +5,7 @@ import { Notification } from "../models/notification.model.js";
 
 export const getAllConnection = async (req, res) => {
   const user = req.user;
-  console.log(user);
+  // console.log(user);
 
   try {
     const connectionList = await User.findOne({ _id: user._id }).populate(

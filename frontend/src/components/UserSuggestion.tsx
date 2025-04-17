@@ -108,7 +108,7 @@ const UserSuggestion = () => {
   }
 
   return (
-    <div className="col-span-3 bg-gray-200 p-4 rounded-lg h-[120vh] fixed right-0 top-20 mt-2">
+    <div className="col-span-3 bg-gray-200 p-4 rounded-lg h-[120vh] fixed right-0 top-20 mt-2 hidden md:block">
       {pendingConnectionList.find((user: UserProps) => {
         return (
           user.receiver === authUser?.data._id &&

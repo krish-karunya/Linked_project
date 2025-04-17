@@ -31,10 +31,6 @@ export const signup = async (req, res) => {
         .json({ message: "Password Length Should be greater than 6" });
     }
 
-    // Hash the password :
-    const genSalt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, genSalt);
-
     // creating a user :
     const newUser = new User({
       userName,

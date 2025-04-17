@@ -2,7 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./db/connectDB.js";
-import { limiter } from "./utils/rateLimit.js";
+import { createServer } from "http";
+
+// import { limiter } from "./utils/rateLimit.js";
+
 import cors from "cors";
 
 // Router:
@@ -12,6 +15,9 @@ import postRoute from "./routes/post.route.js";
 import commentRoute from "./routes/comment.route.js";
 import connectionRoute from "./routes/connection.route.js";
 import notificationRoute from "./routes/notification.route.js";
+import messageRoute from "./routes/message.route.js";
+
+import initializeSocket from "./utils/socket.js";
 
 // creating a instance of express :
 const app = express();
@@ -34,6 +40,10 @@ app.use("/api/v1/post", postRoute);
 app.use("/api/v1/comment", commentRoute);
 app.use("/api/v1/connection", connectionRoute);
 app.use("/api/v1/notification", notificationRoute);
+app.use("/api/v1/message", messageRoute);
+
+const httpServer = createServer(app);
+initializeSocket(httpServer);
 
 // Connecting the DB Before Listening to the Port(Best Practice):
 connectDB()
@@ -41,7 +51,7 @@ connectDB()
     console.log("mongodb connected Successfully");
     const PORT = process.env.PORT || 3000;
     // Server Listening Port :
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log("server is running in the port -", PORT);
     });
   })

@@ -19,3 +19,14 @@ export function formatRelativeTime(isoString: Date): string {
     return `${days} day${days !== 1 ? "s" : ""} ago`;
   }
 }
+export function MessageformatRelativeTime(isoString: Date): string {
+  const dateString = isoString;
+  const date = new Date(dateString);
+
+  // Extract hours, minutes, and seconds
+  const hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
+  const seconds = date.getUTCSeconds();
+
+  return `${hours}:${minutes}`;
+}

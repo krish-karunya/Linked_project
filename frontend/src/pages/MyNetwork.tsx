@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "../utils/axiosInstance";
 import UserCard from "../components/UserCard";
 import { Divide, Loader2Icon, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 type UserProps = {
   _id: string;
   userName: string;
@@ -28,12 +29,12 @@ const MyNetwork = () => {
     );
   }
   return (
-    <div className="flex p-8 gap-6 rounded-lg">
+    <div className="flex p-8 gap-6 rounded-lg w-[100%]">
       <div className="col-span-4 mt-14 w-[25%]">
         <UserCard />
       </div>
 
-      <div className="bg-gray-200 flex-1 col-span-8 p-8 mt-14 rounded-lg">
+      <div className="bg-gray-200  md:flex-1  p-8 mt-14 rounded-lg">
         <h1 className="text-xl font-bold text-gray-700 mb-4">
           My Connections({myConnectionList.length})
         </h1>
@@ -50,7 +51,7 @@ const MyNetwork = () => {
             {myConnectionList?.map((user: UserProps) => (
               <div
                 key={user._id}
-                className="bg-gray-300 px-4 py-6 rounded-lg flex items-center gap-4 justify-between mt-2"
+                className="bg-gray-300 px-4 py-6 rounded-lg flex flex-col md:flex-row items-center gap-4 justify-between mt-2"
               >
                 <div className="flex items-center gap-4">
                   <img
@@ -63,9 +64,12 @@ const MyNetwork = () => {
                     <p className="text-sm text-gray-500">{user.headline}</p>
                   </div>
                 </div>
-                <button className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-500">
-                  Chat
-                </button>
+                <Link
+                  to={`/chat/${user._id}`}
+                  className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-500"
+                >
+                  <button> Chat</button>
+                </Link>
               </div>
             ))}
           </div>

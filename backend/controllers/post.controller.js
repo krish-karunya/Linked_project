@@ -13,7 +13,7 @@ const getPublicPost = async (req) => {
 export const getFeedPost = async (req, res) => {
   const user = req.user;
   const publicPost = await getPublicPost(req);
-  console.log(publicPost);
+  // console.log(publicPost);
 
   try {
     const connectionPost = await Post.find({
@@ -51,7 +51,7 @@ export const getMyPost = async (req, res) => {
 
 export const getPost = async (req, res) => {
   const postId = req.params.id;
-  console.log(postId);
+  // console.log(postId);
 
   try {
     // Validation for MongoDB ID :
@@ -199,6 +199,7 @@ export const likeAndDisLikePost = async (req, res) => {
       return res.status(404).json({ message: "Post Not found" });
     }
     if (post.like.includes(currentUser._id.toString())) {
+      post.likeCount = post.likeCount - 1;
       post.like = post.like.filter(
         (userId) => userId.toString() !== currentUser._id.toString()
       );
@@ -208,6 +209,7 @@ export const likeAndDisLikePost = async (req, res) => {
         .status(200)
         .json({ message: "You Disliked the post", data: post });
     } else {
+      post.likeCount = post.likeCount + 1;
       post.like.push(currentUser._id);
       // Notification Todo :
 

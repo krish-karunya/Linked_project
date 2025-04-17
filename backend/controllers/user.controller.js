@@ -95,7 +95,7 @@ export const updateProfile = async (req, res) => {
         await cloudinary.uploader.upload(bannerImg, { folder: "profile" })
       ).secure_url;
     }
-    console.log("Updated profile Object", updateProfile);
+    // console.log("Updated profile Object", updateProfile);
 
     const user = await User.findByIdAndUpdate(
       req.user._id, // No need to wrap _id in an object
@@ -103,7 +103,7 @@ export const updateProfile = async (req, res) => {
       { new: true }
     ).select("-password");
 
-    console.log("updatedProfile--", user);
+    // console.log("updatedProfile--", user);
 
     res.status(200).json({ data: user });
   } catch (error) {

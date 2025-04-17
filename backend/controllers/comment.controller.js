@@ -35,8 +35,9 @@ export const createComment = async (req, res) => {
     });
 
     post.comment.push(newComment._id);
-    console.log(userId.toString());
-    console.log(post.author.toString());
+    post.commentCount = post.commentCount + 1;
+    // console.log(userId.toString());
+    // console.log(post.author.toString());
 
     // Notification Todo :
     if (userId.toString() !== post.author.toString()) {
@@ -166,8 +167,11 @@ export const deleteComment = async (req, res) => {
 
     await Post.findByIdAndUpdate(
       { _id: post._id },
-      { $pull: { comment: commentId } }
+      { $pull: { comment: commentId }, $inc: { commentCount: -1 } }
     );
+    // post.commentCount = post.commentCount - 1;
+    // await post.save();
+
     await Comment.findByIdAndDelete({
       _id: commentId,
     });
